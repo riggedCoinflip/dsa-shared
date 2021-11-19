@@ -1,4 +1,4 @@
-import { calcAp } from "./calc-ap";
+import {calcAp} from './calc-ap';
 
 export const rename = (name: string): string => {
   const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
