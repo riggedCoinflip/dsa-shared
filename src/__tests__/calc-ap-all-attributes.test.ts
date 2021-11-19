@@ -1,4 +1,4 @@
-import {calcApAll, rename} from '../calc-ap/calc-ap-helper';
+import {rename} from '../calc-ap/calc-ap-helper';
 
 describe('calcApHelper', () => {
   describe('rename', () => {
