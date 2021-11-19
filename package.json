@@ -1,6 +1,6 @@
 {
     "name": "@riggedcoinflip/dsa-shared",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Shared code for DSA_BE and DSA_FE",
     "keywords": [],
     "homepage": "https://github.com/riggedCoinflip/dsa-shared#readme",
