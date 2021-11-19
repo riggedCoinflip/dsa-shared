@@ -1,9 +1,15 @@
 import {calcAp} from './calc-ap';
 
-export const rename = (name: string): string => {
+
+
+export const prefix = (name: string, prefix: string): string => {
   const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
-  return `ap${capitalized}`;
+  return `${prefix}${capitalized}`;
 };
+
+export const prefixAp = (name:string): string => {
+  return prefix(name, "ap")
+}
 
 export const calcApAttribute = (attributeValue: number): number => {
   return calcAp({

@@ -1,9 +1,9 @@
-import {rename} from '../calc-ap/calc-ap-helper';
+import {prefix} from '../calc-ap/calc-ap-helper';
 
 describe('calcApHelper', () => {
   describe('rename', () => {
     it('renames correctly', () => {
-      expect(rename('name')).toBe('apName');
+      expect(prefix('name', 'prefix')).toBe('prefixName');
     });
   });
 });
