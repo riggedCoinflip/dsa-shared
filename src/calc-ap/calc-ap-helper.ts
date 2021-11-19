@@ -2,13 +2,13 @@ import {calcAp} from './calc-ap';
 
 
 
-export const prefix = (name: string, prefix: string): string => {
+export const prefixString = (name: string, prefix: string): string => {
   const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
   return `${prefix}${capitalized}`;
 };
 
 export const prefixAp = (name:string): string => {
-  return prefix(name, "ap")
+  return prefixString(name, "ap")
 }
 
 export const calcApAttribute = (attributeValue: number): number => {
