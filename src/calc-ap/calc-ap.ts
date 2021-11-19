@@ -1,4 +1,4 @@
-interface calcApArgs {
+interface CalcApArgs {
     value: number;
     minValue: number;
     maxValue: number;
@@ -7,7 +7,7 @@ interface calcApArgs {
     hasUnlockCost: boolean;
 }
 
-export const calcAp = (args: calcApArgs): number => {
+export const calcAp = (args: CalcApArgs): number => {
     let apCost = 0;
 
     if (!Number.isInteger(args.value)) {
@@ -21,11 +21,11 @@ export const calcAp = (args: calcApArgs): number => {
             `Value ${args.value} is under the lower limit ${args.minValue}`
         );
     } else if (args.value <= args.maxLinearScaling) {
-        //linear scaling
+        // linear scaling
         const linear = args.value - args.minValue;
         apCost += linear;
     } else if (args.value <= args.maxValue) {
-        //scaling equivalent to triangular number
+        // scaling equivalent to triangular number
         const linear = args.maxLinearScaling - args.minValue - 1;
         apCost += linear;
         const triangularBase = args.value - args.maxLinearScaling + 1;
@@ -45,41 +45,3 @@ export const calcAp = (args: calcApArgs): number => {
     return totalCost;
 };
 
-export const calcApAttribute = (attributeValue: number): number => {
-    return calcAp({
-        value: attributeValue,
-        minValue: 8,
-        maxValue: 20,
-        maxLinearScaling: 14,
-        factor: 15,
-        hasUnlockCost: false,
-    });
-};
-
-export const calcSkillOrCombatAttribute = (
-    skillOrCombatValue: number,
-    factor: number
-): number => {
-    return calcAp({
-        value: skillOrCombatValue,
-        minValue: 0,
-        maxValue: 25,
-        maxLinearScaling: 12,
-        factor: factor,
-        hasUnlockCost: false,
-    });
-};
-
-export const calcSpellOrLiturgyAttribute = (
-    spellOrLiturgyValue: number,
-    factor: number
-): number => {
-    return calcAp({
-        value: spellOrLiturgyValue,
-        minValue: 0,
-        maxValue: 25,
-        maxLinearScaling: 12,
-        factor: factor,
-        hasUnlockCost: true,
-    });
-};

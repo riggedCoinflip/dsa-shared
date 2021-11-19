@@ -1,7 +1,7 @@
-import { calcAp } from '../calculate-ap/calculate-ap';
+import { calcAp } from '../calc-ap/calc-ap';
 
-describe('Attribute', () => {
-    const opts = {
+describe('calculate-ap', () => {
+    const args = {
         minValue: 0,
         maxValue: 10,
         maxLinearScaling: 5,
@@ -12,7 +12,7 @@ describe('Attribute', () => {
     const calcApTest = (value: number): number => {
         return calcAp({
             value,
-            ...opts,
+            ...args,
         });
     };
 
@@ -21,20 +21,20 @@ describe('Attribute', () => {
     });
 
     it('scales linearly for <=maxLinearScaling', () => {
-        for (let i = 0; i <= opts.maxLinearScaling - opts.minValue - 1; i++) {
+        for (let i = 0; i <= args.maxLinearScaling - args.minValue - 1; i++) {
             expect(
-                calcApTest(opts.minValue + i + 1) -
-                    calcApTest(opts.minValue + i)
-            ).toBe(opts.factor);
+                calcApTest(args.minValue + i + 1) -
+                    calcApTest(args.minValue + i)
+            ).toBe(args.factor);
         }
     });
 
     it('scales by triangle number for >maxLinearScaling', () => {
-        for (let i = 0; i <= opts.maxValue - opts.maxLinearScaling - 1; i++) {
+        for (let i = 0; i <= args.maxValue - args.maxLinearScaling - 1; i++) {
             expect(
-                calcApTest(opts.maxLinearScaling + i + 1) -
-                    calcApTest(opts.maxLinearScaling + i)
-            ).toBe(opts.factor * (i + 2));
+                calcApTest(args.maxLinearScaling + i + 1) -
+                    calcApTest(args.maxLinearScaling + i)
+            ).toBe(args.factor * (i + 2));
         }
     });
 
@@ -42,13 +42,13 @@ describe('Attribute', () => {
         expect(
             calcAp({
                 value: 0,
-                ...opts,
+                ...args,
                 hasUnlockCost: true,
-            }) - opts.factor
+            }) - args.factor
         ).toBe(
             calcAp({
                 value: 0,
-                ...opts,
+                ...args,
                 hasUnlockCost: false,
             })
         );
@@ -64,14 +64,14 @@ describe('Attribute', () => {
 
     it('throws RangeError for value under minValue', () => {
         const calcApTestWithValueUnderMinValue = () => {
-            return calcApTest(opts.minValue - 1);
+            return calcApTest(args.minValue - 1);
         };
         expect(calcApTestWithValueUnderMinValue).toThrow(RangeError);
     });
 
     it('throws RangeError for value over maxValue', () => {
         const calcApTestWithValueOverMaxValue = () => {
-            return calcApTest(opts.maxValue + 1);
+            return calcApTest(args.maxValue + 1);
         };
         expect(calcApTestWithValueOverMaxValue).toThrow(RangeError);
     });

@@ -1,1 +1,1 @@
-export * from './calculate-ap'
+export * from './calc-ap'
